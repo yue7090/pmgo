@@ -1,15 +1,24 @@
 package main
 
 import (
-	_ "github.com/pm2go"
-	"net/http"
-	"log"
+	"flag"
+	"fmt"
+	"pm2go/lib"
+	"os"
 )
 
 func main() {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/index", func(rw http.ResponseWriter, req *http.Request){
-		rw.Write([]byte("hello, pm2go!\n"))
-	})
-	log.Fatalln(http.ListenAndServe(":9000", mux ))
+	configPath := flag.String("c", "", "config file path")
+	flag.Parse()
+
+	if *configPath != "" {
+		if _, err := os.Stat(*configPath); err != null {
+			fmt.Printf("Can't find config file `%s`\n", *configPath)
+			os.Exit(1)
+		}else {
+			os.Setenv("RUNNER_CONFIG_PATH", *configPath)
+		}
+	}
+
+	lib.Start()
 }
