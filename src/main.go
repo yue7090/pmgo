@@ -12,7 +12,7 @@ func main() {
 	flag.Parse()
 
 	if *configPath != "" {
-		if _, err := os.Stat(*configPath); err != null {
+		if _, err := os.Stat(*configPath); err != nil {
 			fmt.Printf("Can't find config file `%s`\n", *configPath)
 			os.Exit(1)
 		}else {

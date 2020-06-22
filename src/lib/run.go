@@ -98,6 +98,7 @@ func start() {
 				run()
 			}
 
+
 			started = true
 			mainLog(strings.Repeat("-", 20))
 		}

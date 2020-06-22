@@ -68,6 +68,11 @@ func createBuildErrorsLog(message string) bool {
 	if err != nil {
 		return false
 	}
+
+	_, err = file.WriteString(message)
+	if err != nil {
+		return false
+	}
 	return true
 }
 
