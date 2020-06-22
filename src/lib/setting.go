@@ -87,7 +87,7 @@ func loadRunnerConfigSettings() {
 		return 
 	}
 
-	for key, value := range settings[mainSettingsSection] {
+	for key, value := range sections[mainSettingsSection] {
 		settings[key] = value
 	}
 }
@@ -118,7 +118,7 @@ func buildName() string {
 
 func buildPath() string {
 	p := filepath.Join(tmpPath(), buildName())
-	if runtime.GOOS == "windows" && filepath.Exit(p) != ".exe" {
+	if runtime.GOOS == "windows" && filepath.Ext(p) != ".exe" {
 		p += ".exe"
 	}
 	return p
