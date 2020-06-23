@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"pmgo/lib"
+	"github.com/yue7090/pmgo/lib"
 	"os"
 )
 
