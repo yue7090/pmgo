@@ -1,4 +1,4 @@
-module pmgo
+module github.com/yue7090/pmgo
 
 go 1.14
 
