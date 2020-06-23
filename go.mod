@@ -1,4 +1,4 @@
-module pm2go
+module pmgo
 
 go 1.14
 
