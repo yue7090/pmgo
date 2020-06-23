@@ -90,7 +90,8 @@ func start() {
 					createBuildErrorsLog(errorsMessage)
 				}
 			}
-
+			fmt.Println("------------------------")
+			fmt.Println(buildFailed)
 			if !buildFailed {
 				if started {
 					stopChannel <- true

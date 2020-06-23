@@ -118,8 +118,6 @@ func buildName() string {
 
 func buildPath() string {
 	p := filepath.Join(tmpPath(), buildName())
-	fmt.Println("------------------")
-	fmt.Println(p)
 	if runtime.GOOS == "windows" && filepath.Ext(p) != ".exe" {
 		p += ".exe"
 	}

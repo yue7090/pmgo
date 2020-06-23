@@ -4,6 +4,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"fmt"
 )
 
 func initFolders() {
@@ -53,6 +54,8 @@ func isWatchedFile(path string) bool {
 }
 
 func shouldRebuild(eventName string) bool {
+	fmt.Println("------------eventName------------")
+	fmt.Println(eventName)
 	for _, e:= range strings.Split(settings["no_rebuild_ext"], ",") {
 		e = strings.TrimSpace(e) 
 		fileName := strings.Replace(strings.Split(eventName, ":")[0], `"`, "", -1)
