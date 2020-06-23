@@ -8,10 +8,9 @@ import (
 )
 
 func build() (string, bool) {
-	buildLog("building ...")
+	buildLog("Building...")
 
 	cmd := exec.Command("go", "build", "-o", buildPath(), root())
-
 	stderr, err := cmd.StderrPipe()
 	if err != nil {
 		fatal(err)
@@ -22,6 +21,10 @@ func build() (string, bool) {
 		fatal(err)
 	}
 
+	err = cmd.Start()
+	if err != nil {
+		fatal(err)
+	}
 	io.Copy(os.Stdout, stdout)
 	errBuf, _ := ioutil.ReadAll(stderr)
 
@@ -30,6 +33,6 @@ func build() (string, bool) {
 		return string(errBuf), false
 	}
 
-	return "", true
+	return "success", true
 
 }

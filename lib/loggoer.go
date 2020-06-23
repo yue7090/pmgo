@@ -9,12 +9,12 @@ import (
 
 type logFunc func(string, ...interface{})
 
-var logger = logPkg .New(colorable.NewColorableStderr(), "", 0)
+var logger = logPkg.New(colorable.NewColorableStderr(), "", 0)
 
 func newLogFunc(prefix string) func(string, ...interface{}) {
 	color, clear := "", ""
-	if settings["color"] == "1" {
-		color = fmt.Sprintf("\033[&sm", logColor(prefix))
+	if settings["colors"] == "1" {
+		color = fmt.Sprintf("\033[%sm", logColor(prefix))
 		clear = fmt.Sprintf("\033[%sm", colors["reset"])
 	}
 	prefix = fmt.Sprintf("%-11s", prefix)

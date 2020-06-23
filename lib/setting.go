@@ -8,11 +8,12 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
 	"github.com/pilu/config"
 )
 
 const (
-	envSettingsPrefix = "RUNNER_"
+	envSettingsPrefix   = "RUNNER_"
 	mainSettingsSection = "Settings"
 )
 
@@ -65,6 +66,7 @@ var colors = map[string]string{
 func logColor(logName string) string {
 	settingsKey := fmt.Sprintf("log_color_%s", logName)
 	colorName := settings[settingsKey]
+
 	return colors[colorName]
 }
 
@@ -81,7 +83,8 @@ func loadRunnerConfigSettings() {
 	if _, err := os.Stat(configPath()); err != nil {
 		return
 	}
-	logger.Printf("Loading setting from %s", configPath())
+
+	logger.Printf("Loading settings from %s", configPath())
 	sections, err := config.ParseFile(configPath(), mainSettingsSection)
 	if err != nil {
 		return 
@@ -115,7 +118,6 @@ func tmpPath() string {
 func buildName() string {
 	return settings["build_name"]
 }
-
 func buildPath() string {
 	p := filepath.Join(tmpPath(), buildName())
 	if runtime.GOOS == "windows" && filepath.Ext(p) != ".exe" {
@@ -138,5 +140,6 @@ func configPath() string {
 
 func buildDelay() time.Duration {
 	value, _ := strconv.Atoi(settings["build_delay"])
+	
 	return time.Duration(value)
 }

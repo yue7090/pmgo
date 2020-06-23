@@ -9,7 +9,7 @@ func run() bool {
 	runnerLog("Running...")
 	cmd := exec.Command(buildPath())
 
-	stderr, err := cmd.StdoutPipe()
+	stderr, err := cmd.StderrPipe()
 	if err != nil {
 		fatal(err)
 	}

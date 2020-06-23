@@ -11,6 +11,6 @@ func initLimit() {
 	rLimit.Cur = 10000
 	err := syscall.Setrlimit(syscall.RLIMIT_NOFILE, &rLimit)
 	if err != nil {
-		fmt.Println("Error Setting Rlimit", err)
+		fmt.Println("Error Setting Rlimit ", err)
 	}
 }

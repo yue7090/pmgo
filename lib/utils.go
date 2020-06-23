@@ -4,7 +4,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-	"fmt"
 )
 
 func initFolders() {
@@ -20,6 +19,7 @@ func initFolders() {
 func isTmpDir(path string) bool {
 	absolutePath, _ := filepath.Abs(path)
 	absoluteTmpPath, _ := filepath.Abs(tmpPath())
+
 	return absolutePath == absoluteTmpPath
 }
 
@@ -46,7 +46,7 @@ func isWatchedFile(path string) bool {
 
 	ext := filepath.Ext(path)
 	for _, e := range strings.Split(settings["valid_ext"], ",") {
-		if strings.TrimSpace(e) == ext{
+		if strings.TrimSpace(e) == ext {
 			return true
 		}
 	}
@@ -54,15 +54,14 @@ func isWatchedFile(path string) bool {
 }
 
 func shouldRebuild(eventName string) bool {
-	fmt.Println("------------eventName------------")
-	fmt.Println(eventName)
-	for _, e:= range strings.Split(settings["no_rebuild_ext"], ",") {
+	for _, e := range strings.Split(settings["no_rebuild_ext"], ",") {
 		e = strings.TrimSpace(e) 
 		fileName := strings.Replace(strings.Split(eventName, ":")[0], `"`, "", -1)
 		if strings.HasSuffix(fileName, e) {
 			return false
 		}
 	}
+
 	return true
 }
 
@@ -76,10 +75,12 @@ func createBuildErrorsLog(message string) bool {
 	if err != nil {
 		return false
 	}
+
 	return true
 }
 
 func removeBuildErrorsLog() error {
 	err := os.Remove(buildErrorsFilePath())
+
 	return err
 }
