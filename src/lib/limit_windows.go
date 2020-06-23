@@ -1,3 +1,0 @@
-package lib
-
-func initLimit() {}
